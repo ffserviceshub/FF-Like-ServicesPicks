@@ -124,6 +124,91 @@ footer a { color: #8de9f5; font-size: 13px; font-weight: 800; }
 @media (max-width: 900px) { .package-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .hero-grid { gap: 26px; } .steps { grid-template-columns: repeat(2,1fr); } .navlinks { gap: 13px; } }
 @media (max-width: 640px) { .container { width: min(100% - 28px, 520px); } .nav { min-height: 66px; gap: 10px; } .brand { gap: 7px; font-size: 14px; } .brand-mark { width: 36px; height: 36px; font-size: 17px; } .navlinks { display: none; } .nav .whatsapp { padding: 10px 12px; font-size: 12px; } .hero { padding: 52px 0 40px; } .hero-grid { grid-template-columns: 1fr; } h1 { letter-spacing: -1.5px; } .hero p { font-size: 15px; } .hero-card { padding: 22px; } section { padding: 52px 0; } .section-head { display: block; } .section-head p { margin-top: 10px; } .package-grid { grid-template-columns: 1fr; } .package-card { padding: 22px; } .steps, .payment-grid, .order-form-grid { grid-template-columns: 1fr; } .order-form-grid .field-full { grid-column: auto; } .order-panel { padding: 21px; } .form-actions { flex-direction: column; } .form-actions .button { width: 100%; min-height: 46px; } .pay-number { font-size: 19px; flex-wrap: wrap; } .pay-number button { flex: 1; } .order-form-grid input, .order-form-grid select { font-size: 16px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+
+/* Gaming Neon redesign — layered overrides to preserve existing order logic */
+.package-card[hidden] { display: none !important; }
+:root {
+  color-scheme: dark;
+  --site-primary: #a78bfa;
+  --site-secondary: #100b24;
+  --site-background: #080711;
+  --site-on-primary: #080711;
+  --site-on-secondary: #f5f3ff;
+  --bg: #080711;
+  --surface: #111020;
+  --surface-2: #1a1730;
+  --text: #f5f3ff;
+  --muted: #a7a2c4;
+  --border: #30294d;
+  --cyan: #46eaff;
+  --green: #19c982;
+  --gold: #b9a0ff;
+  --radius: 20px;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 22px; }
+body { background: #080711; color: #f5f3ff; }
+#app { background: radial-gradient(ellipse at 15% 0%, #39206a33, transparent 34%), #080711; }
+.topbar { background: #0c0a18eF; backdrop-filter: blur(18px); border-bottom-color: #34274f; position: sticky; top: 0; z-index: 20; }
+.brand-mark { background: linear-gradient(135deg,#a78bfa,#46eaff); color:#100b24; box-shadow:0 0 26px #9b78ff55; }
+.navlinks a:hover, footer a:hover { color: var(--cyan); }
+.whatsapp { background: linear-gradient(135deg,#16b879,#0d9d68); box-shadow:0 8px 26px #13c98120; }
+.primary { background: linear-gradient(135deg,#b9a0ff,#7c5cff); color:#100b24; box-shadow:0 8px 26px #8c68ff26; }
+.secondary { background:#171429; border-color:#383054; }
+.hero { overflow:hidden; background: radial-gradient(ellipse at 78% 24%,#7c3aed3b,transparent 36%), radial-gradient(ellipse at 4% 90%,#06b6d433,transparent 32%), linear-gradient(135deg,#100b24,#080711 70%); padding-top:82px; }
+.hero::before { content:""; position:absolute; width:320px; height:320px; border:1px solid #a78bfa24; border-radius:50%; right:-150px; top:12px; box-shadow:0 0 0 36px #a78bfa08,0 0 0 72px #46eaff06; pointer-events:none; }
+.eyebrow { color:var(--cyan); letter-spacing:2.2px; }
+h1 { text-wrap:balance; }
+.gradient-text { background:linear-gradient(90deg,#c4b5fd,#46eaff); color:transparent; background-clip:text; -webkit-background-clip:text; }
+.hero p { color:#c2bddb; }
+.hero-card, .order-panel { background:linear-gradient(145deg,#19152c,#100e1f); border:1px solid #5e4b8b; box-shadow:0 22px 80px #0005,0 0 40px #8b5cf612; }
+.premium-label { background:linear-gradient(90deg,#b9a0ff,#46eaff); color:#100b24; }
+.hero-card .price { color:var(--cyan); }
+section { position:relative; }
+.packages { background:linear-gradient(180deg,#0b0915,#0d0b19); color:var(--text); }
+.package-grid { align-items:stretch; }
+.package-card { position:relative; overflow:hidden; background:linear-gradient(155deg,#171429,#100e1d 75%); border-color:#30294d; box-shadow:0 12px 32px #0002; animation: neon-rise .5s both; }
+.package-card::before { content:""; position:absolute; height:2px; left:18px; right:18px; top:0; background:linear-gradient(90deg,transparent,#8b5cf6,#46eaff,transparent); opacity:.65; }
+.package-card:hover { transform:translateY(-7px); border-color:#8b5cf6; box-shadow:0 20px 45px #0005,0 0 28px #8b5cf620; }
+.package-card.featured { border:1px solid #9b7aff; background:radial-gradient(ellipse at 100% 0%,#6d28d933,transparent 48%),linear-gradient(150deg,#21183a,#100e1d 76%); box-shadow:0 0 0 1px #a78bfa12,0 18px 42px #0004; }
+.package-card.featured::before { height:3px; opacity:1; }
+.package-name { color:#f6f3ff; line-height:1.35; }
+.package-price { color:#c4b5fd; }
+.package-price small { color:#aaa4c8; }
+.tag { color:#9c95bc; }
+.package-card.featured .tag { color:#d7c8ff; }
+.stats { gap:8px; }
+.stat { background:#0b0a16; border:1px solid #2d2646; border-radius:12px; }
+.stat strong { color:#46eaff; }
+.package-card .button { margin-top:auto; }
+.package-card .button:hover, .button:hover { box-shadow:0 0 22px #46eaff25; }
+.dark-section { background:#0b0915; border-block:1px solid #201a35; }
+.step { background:linear-gradient(145deg,#171429,#100e1d); border-color:#30294d; }
+.step-num { color:#46eaff; background:#46eaff12; border:1px solid #46eaff30; }
+.order-panel { border-radius:24px; }
+input, select, textarea, .order-form-grid input, .order-form-grid select { background:#0b0a16; color:#f5f3ff; border-color:#3a3157; }
+input::placeholder { color:#77708f; }
+details { background:#121020; border-color:#30294d; }
+details[open] { border-color:#6d5a9e; }
+footer { background:#05040b; border-top:1px solid #241d38; }
+.notice { border-color:#3b3159; background:#141124; color:#bdb5da; }
+.package-tools { display:flex; gap:12px; margin:0 0 22px; flex-wrap:wrap; }
+.package-tools input, .package-tools select { min-height:48px; border:1px solid #393052; border-radius:13px; padding:12px 15px; background:#100e1e; color:#f5f3ff; outline:none; }
+.package-tools input { flex:1 1 260px; min-width:0; }
+.package-tools select { flex:0 1 210px; }
+.package-tools input:focus, .package-tools select:focus { border-color:#46eaff; box-shadow:0 0 0 3px #46eaff15; }
+.package-count { color:#a7a2c4; font-size:12px; margin:-10px 0 18px; }
+.package-badge { display:inline-flex; align-items:center; width:max-content; padding:5px 9px; margin-bottom:8px; border-radius:999px; border:1px solid #46eaff40; background:#46eaff10; color:#7df1ff; font-size:10px; font-weight:900; letter-spacing:.8px; text-transform:uppercase; }
+.package-card.featured .package-badge { border-color:#a78bfa66; background:#a78bfa18; color:#d9caff; }
+.empty-packages { grid-column:1/-1; text-align:center; padding:35px 20px; border:1px dashed #44365f; border-radius:18px; color:#aaa4c8; }
+@keyframes neon-rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width:640px) {
+ .hero { padding-top:58px; }
+ .package-tools { flex-direction:column; }
+ .package-tools input, .package-tools select { width:100%; flex-basis:auto; }
+ .package-card:hover { transform:translateY(-2px); }
+}
+@media (prefers-reduced-motion:reduce) { .package-card { animation:none; } }
+
 </style>
 </head>
 <body>
@@ -159,6 +244,17 @@ footer a { color: #8de9f5; font-size: 13px; font-weight: 800; }
 <section class="packages" id="packages">
   <div class="container">
     <div class="section-head"><div><div class="eyebrow">প্যাকেজ ও দাম</div><h2>আপনার পছন্দের প্যাকেজ বেছে নিন</h2></div><p>দাম পরিষ্কারভাবে দেওয়া আছে। পছন্দের প্যাকেজে Order চাপলেই WhatsApp মেসেজ তৈরি হবে।</p></div>
+    <div class="package-tools" role="search" aria-label="প্যাকেজ খুঁজুন">
+      <input id="package-search" type="search" placeholder="🔎 প্যাকেজের নাম লিখে খুঁজুন..." aria-label="প্যাকেজ খুঁজুন">
+      <select id="package-duration" aria-label="মেয়াদ অনুযায়ী ফিল্টার">
+        <option value="all">সব মেয়াদের প্যাকেজ</option>
+        <option value="30">৩০ দিন</option>
+        <option value="60">৬০ দিন</option>
+        <option value="365">৩৬৫ দিন</option>
+        <option value="permanent">Permanent</option>
+      </select>
+    </div>
+    <p class="package-count" id="package-count" aria-live="polite">সব প্যাকেজ দেখানো হচ্ছে</p>
     <div class="package-grid" id="package-grid" aria-live="polite"></div>
     <p class="notice">মোট Likes হলো দৈনিক target ও মেয়াদ দিয়ে করা হিসাব—নিশ্চিত ডেলিভারির প্রতিশ্রুতি নয়। Supplier cost ও অন্যান্য খরচ যাচাই না করা পর্যন্ত দামগুলো প্রাথমিক। Permanent service supplier-এর লিখিত শর্তের ওপর নির্ভর করবে।</p>
   </div>
@@ -245,8 +341,11 @@ SETTINGS.packages.forEach(pkg => {
   const total = pkg.days ? (pkg.dailyValue * pkg.days).toLocaleString('en-BD') + '+' : 'Not fixed';
   const card = document.createElement('article');
   card.className = 'package-card' + (pkg.featured ? ' featured' : '');
+  card.dataset.days = pkg.days === null ? 'permanent' : String(pkg.days);
+  card.dataset.search = (pkg.name + ' ' + pkg.daily + ' ' + pkg.duration + ' ' + pkg.price).toLowerCase();
+  const isHighlight = pkg.featured || pkg.name === 'Pro' || pkg.name === 'Ultra';
   card.innerHTML = `
-    ${pkg.featured ? '<span class="premium-label">♛ প্রিমিয়াম প্যাকেজ</span>' : '<div class="tag">FF Likes Package</div>'}
+    ${pkg.featured ? '<span class="package-badge">♛ Premium pick</span><span class="premium-label">♛ প্রিমিয়াম প্যাকেজ</span>' : (isHighlight ? '<span class="package-badge">⚡ Popular choice</span>' : '<div class="tag">FF Likes Package</div>')}
     <h3 class="package-name" style="margin-top:${pkg.featured ? '13px' : '8px'}">${pkg.name}</h3>
     <div class="package-price">${formatBDT(pkg.price)} <small>/ package</small></div>
     <div class="stats">
@@ -257,6 +356,35 @@ SETTINGS.packages.forEach(pkg => {
     <a class="button ${pkg.featured ? 'primary' : 'secondary'} full order-btn" href="#" data-package="${pkg.name}" data-daily="${pkg.daily}" data-duration="${pkg.duration}" data-price="${pkg.price}">${pkg.featured ? '👑 Permanent অর্ডার করুন' : 'WhatsApp-এ অর্ডার করুন'} ↗</a>`;
   grid.appendChild(card);
 });
+
+// Live package search, duration filtering, and visible-result count.
+const packageSearch = document.getElementById('package-search');
+const packageDuration = document.getElementById('package-duration');
+const packageCount = document.getElementById('package-count');
+function filterPackages() {
+  const query = packageSearch.value.trim().toLowerCase();
+  const duration = packageDuration.value;
+  let visible = 0;
+  [...grid.querySelectorAll('.package-card')].forEach(card => {
+    const matchesQuery = card.dataset.search.includes(query);
+    const matchesDuration = duration === 'all' || card.dataset.days === duration;
+    const show = matchesQuery && matchesDuration;
+    card.hidden = !show;
+    if (show) visible++;
+  });
+  packageCount.textContent = visible + 'টি প্যাকেজ পাওয়া গেছে';
+  let empty = grid.querySelector('.empty-packages');
+  if (visible === 0 && !empty) {
+    empty = document.createElement('div');
+    empty.className = 'empty-packages';
+    empty.textContent = 'কোনো প্যাকেজ পাওয়া যায়নি। অন্য নাম বা মেয়াদ দিয়ে খুঁজুন।';
+    grid.appendChild(empty);
+  } else if (visible > 0 && empty) empty.remove();
+}
+packageSearch.addEventListener('input', filterPackages);
+packageDuration.addEventListener('change', filterPackages);
+filterPackages();
+
 const orderPackageSelect = document.getElementById('order-package');
 SETTINGS.packages.forEach(pkg => {
   const option = document.createElement('option');
