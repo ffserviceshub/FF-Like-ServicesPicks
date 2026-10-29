@@ -77,11 +77,11 @@ button:active,.btn:active{transform:scale(.98)}
 <form id="orderForm"><div class="form-grid">
 <div class="field wide"><label for="order-package">Selected package / প্যাকেজ</label><select id="order-package" required></select></div>
 <div class="field"><label for="uid">Free Fire UID</label><input id="uid" inputmode="numeric" pattern="[0-9]{5,20}" minlength="5" maxlength="20" placeholder="শুধু সংখ্যা: ৫–২০ ডিজিট" required></div>
-<div class="field"><label for="method">Payment method / পেমেন্টের মাধ্যম</label><select id="method"><option>bKash Send Money</option><option disabled>Nagad (Coming Soon)</option></select></div>
+<div class="field"><label for="method">Payment method / পেমেন্টের মাধ্যম</label><select id="method"><option>bKash Send Money</option><option>Nagad Send Money</option></select></div>
 <div class="field"><label for="trx">Transaction ID (TrxID)</label><input id="trx" autocomplete="off" placeholder="SMS-এ পাওয়া TrxID"></div>
 <div class="field"><label for="sender">Sender number / যে নম্বর থেকে টাকা পাঠিয়েছেন</label><input id="sender" type="tel" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX"></div>
 </div><div class="form-actions"><button class="btn btn-green" type="submit">WhatsApp-এ অর্ডার পাঠান ↗</button><a class="btn btn-glass" href="#payment">পেমেন্টের তথ্য</a></div><p class="hint">Game password, account password, bKash PIN বা OTP কখনো শেয়ার করবেন না। পেমেন্ট হাতে যাচাই না হওয়া পর্যন্ত অর্ডার confirm নয়।</p></form></div>
-<div class="panel" id="payment"><h3>💳 bKash Send Money</h3><p>নির্বাচিত প্যাকেজের সঠিক দাম নিচের bKash নম্বরে Send Money করুন। টাকা পাঠানোর আগে নম্বর মিলিয়ে নিন।</p><div class="pay-number"><span id="bkash-number">01733054857</span><button class="btn btn-gold" id="copy" type="button">নম্বর কপি করুন</button></div><div class="status" id="copy-status" role="status"></div><p class="hint">পেমেন্টের পর order form-এ TrxID অথবা টাকা পাঠানো নম্বর দিন। পেমেন্ট হাতে যাচাই করা হবে।</p><a class="btn btn-green" href="https://wa.me/8801951722651" target="_blank" rel="noopener">Admin-কে WhatsApp করুন ↗</a></div>
+<div class="panel" id="payment"><h3>💳 bKash Send Money</h3><p>নির্বাচিত প্যাকেজের সঠিক দাম নিচের bKash নম্বরে Send Money করুন। টাকা পাঠানোর আগে নম্বর মিলিয়ে নিন।</p><div class="pay-number"><span id="bkash-number">01733054857</span><button class="btn btn-gold" id="copy" type="button">bKash নম্বর কপি</button></div><div class="status" id="copy-status" role="status"></div><div class="pay-number"><span id="nagad-number">01951722651</span><button class="btn btn-gold" id="copy-nagad" type="button">Nagad নম্বর কপি</button></div><div class="status" id="nagad-copy-status" role="status"></div><p class="hint">পেমেন্টের পর order form-এ TrxID অথবা টাকা পাঠানো নম্বর দিন। পেমেন্ট হাতে যাচাই করা হবে।</p><a class="btn btn-green" href="https://wa.me/8801951722651" target="_blank" rel="noopener">Admin-কে WhatsApp করুন ↗</a></div>
 </div></div></section>
 <section id="support"><div class="wrap"><div class="section-head"><div><div class="kicker">জেনে নিন</div><h2>সাধারণ কিছু প্রশ্ন (FAQ)</h2></div><p>অর্ডার, পেমেন্ট এবং সার্ভিস সম্পর্কে দরকারি তথ্য।</p></div><div class="faq-list">
 <details class="faq-highlight"><summary><strong>কীভাবে package অর্ডার করব?</strong></summary><p>পছন্দের package বেছে Order বাটনে চাপ দিন। WhatsApp-এ UID ও পেমেন্টের তথ্য যোগ করে মেসেজ পাঠান।</p></details>
@@ -109,6 +109,7 @@ const SETTINGS = {
  whatsappShortLink:"https://wa.me/8801951722651",
  whatsappBusinessNumber:"8801951722651",
  bkashNumber:"01733054857",
+ nagadNumber:"01951722651",
  packages:[
  {name:"Starter",daily:"30+",dailyValue:30,days:30,duration:"৩০ দিন",price:70},
  {name:"Value",daily:"50+",dailyValue:50,days:30,duration:"৩০ দিন",price:120},
@@ -151,7 +152,9 @@ location.assign("https://wa.me/"+SETTINGS.whatsappBusinessNumber+"?text="+encode
 $("sender").addEventListener("input",()=>{$("sender").value=$("sender").value.replace(/\D/g,"").slice(0,11)});
 $("uid").addEventListener("input",()=>{$("uid").value=$("uid").value.replace(/\D/g,"").slice(0,20)});
 $("bkash-number").textContent=SETTINGS.bkashNumber;
+$("nagad-number").textContent=SETTINGS.nagadNumber;
 $("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(SETTINGS.bkashNumber);$("copy-status").textContent="bKash number copied!"}catch(e){$("copy-status").textContent="Copy manually: "+SETTINGS.bkashNumber}});
+$("copy-nagad").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(SETTINGS.nagadNumber);$("nagad-copy-status").textContent="Nagad number copied!"}catch(e){$("nagad-copy-status").textContent="Copy manually: "+SETTINGS.nagadNumber}});
 $("year").textContent=new Date().getFullYear();renderপ্যাকেজ();
 document.querySelectorAll(".mobile-nav a").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll(".mobile-nav a").forEach(x=>x.classList.remove("active"));a.classList.add("active")}));
 </script>
