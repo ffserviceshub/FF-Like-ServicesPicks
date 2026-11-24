@@ -66,7 +66,7 @@ button:active,.btn:active{transform:scale(.98)}
 <div class="toolbar"><input id="search" type="search" placeholder="⌕ প্যাকেজ খুঁজুন..." aria-label="প্যাকেজ খুঁজুন"><select id="duration" aria-label="Filter by duration"><option value="all">সব মেয়াদ</option><option value="30">৩০ দিন</option><option value="60">৬০ দিন</option><option value="365">৩৬৫ দিন</option><option value="permanent">Permanent</option></select><select id="sort" aria-label="Sort packages"><option value="default">Recommended</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option></select></div>
 <div class="grid" id="package-grid"></div><div class="empty" id="empty">কোনো প্যাকেজ পাওয়া যায়নি। অন্যভাবে খুঁজে দেখুন।</div>
 <div class="more-packages"><div><span class="kicker">আরও বড় প্যাকেজ</span><h3>আরও বড় প্যাকেজ নিতে চান?</h3><p>এই তালিকার বাইরে আরও বড় বা কাস্টম প্যাকেজের বিস্তারিত জানতে Admin-এর সঙ্গে WhatsApp-এ কথা বলুন।</p></div><a class="btn btn-green" href="https://wa.me/8801951722651?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE!%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%86%E0%A6%B0%E0%A6%93%20%E0%A6%AC%E0%A7%9C%20Free%20Fire%20Likes%20package%20%E0%A6%A8%E0%A%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4%20%E0%A6%A6%E0%A7%9F%E0%A6%BE%20%E0%A6%95%E0%A6%B0%E0%A7%87%20package%20details%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%BE%E0%A6%AC%E0%A7%87%E0%A6%A8%E0%A5%A4" target="_blank" rel="noopener">Admin-কে WhatsApp মেসেজ করুন ↗</a></div>
-<p class="note">মোট Likes হলো দৈনিক target ও মেয়াদ দিয়ে করা হিসাব—নিশ্চিত ডেলিভারির প্রতিশ্রুতি নয়। Supplier cost ও অন্যান্য খরচ যাচাই না করা পর্যন্ত দামগুলো প্রাথমিক। Permanent service supplier-এর লিখিত শর্তের ওপর নির্ভর করবে।</p></div></section>
+<p class="note">মোট Likes হলো দৈনিক target ও মেয়াদ দিয়ে করা আনুমানিক হিসাব—নিশ্চিত মোট সংখ্যার প্রতিশ্রুতি নয়। Permanent প্যাকেজে আপনার Free Fire ID যতদিন সক্রিয় ও ব্যবহারযোগ্য থাকবে, ততদিন নির্ধারিত Daily Likes চলবে।</p></div></section>
 <section class="how" id="how"><div class="wrap"><div class="kicker">সহজ অর্ডার</div><h2 style="font-size:clamp(28px,4vw,42px);margin:8px 0 0">কীভাবে অর্ডার করবেন?</h2><div class="steps">
 <article class="step"><div class="num">ধাপ ০১</div><h3>প্যাকেজ বেছে নিন</h3><p>Daily Likes, মেয়াদ ও দাম দেখে পছন্দের package-এর Order বাটনে চাপ দিন।</p></article>
 <article class="step"><div class="num">ধাপ ০২</div><h3>bKash বা Nagad-এ পেমেন্ট করুন</h3><p>আপনার পছন্দের মাধ্যমের নম্বরে নির্বাচিত package-এর সঠিক amount Send Money করুন। পাঠানোর আগে নম্বর ও টাকার পরিমাণ মিলিয়ে নিন।</article>
@@ -123,7 +123,7 @@ const SETTINGS = {
  {name:"Yearly Value",daily:"50+",dailyValue:50,days:365,duration:"৩৬৫ দিন",price:750},
  {name:"Lifetime Star",daily:"50+",dailyValue:50,days:null,duration:"Permanent (ID সক্রিয় থাকা পর্যন্ত)",price:1050,featured:true},
  {name:"Yearly Pro",daily:"80+",dailyValue:80,days:365,duration:"৩৬৫ দিন",price:1150},
- {name:"Lifetime VIP",daily:"200+",dailyValue:200,days:null,duration:"Permanent (Supplier-এর শর্ত প্রযোজ্য)",price:5000}
+ {name:"Lifetime VIP",daily:"200+",dailyValue:200,days:null,duration:"Permanent (ID সক্রিয় থাকা পর্যন্ত)",price:5000}
  ]};
 const $=id=>document.getElementById(id),money=n=>"৳"+Number(n).toLocaleString("en-BD");
 function total(p){return p.days?(p.dailyValue*p.days).toLocaleString("en-BD")+"+":"নির্দিষ্ট নয়"}
